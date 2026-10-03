@@ -1,6 +1,6 @@
 import math
 
-# Print the board
+
 def print_board(board):
     print()
     for i in range(3):
@@ -9,8 +9,6 @@ def print_board(board):
             print("--+---+--")
     print()
 
-
-# Check whether a player has won
 def check_winner(board, player):
     winning_positions = [
         (0, 1, 2), (3, 4, 5), (6, 7, 8),
@@ -25,22 +23,20 @@ def check_winner(board, player):
     return False
 
 
-# Check if board is full
 def is_draw(board):
     return all(position != " " for position in board)
 
 
-# Minimax algorithm
 def minimax(board, is_maximizing):
-    # Computer wins
+    
     if check_winner(board, "O"):
         return 1
 
-    # Human wins
+    
     if check_winner(board, "X"):
         return -1
 
-    # Draw
+    
     if is_draw(board):
         return 0
 
@@ -69,7 +65,7 @@ def minimax(board, is_maximizing):
         return best_score
 
 
-# Find the best move for computer
+
 def computer_move(board):
     best_score = -math.inf
     best_move = -1
@@ -87,7 +83,7 @@ def computer_move(board):
     return best_move
 
 
-# Main game
+
 def play_game():
     board = [" "] * 9
 
@@ -105,7 +101,7 @@ def play_game():
     while True:
         print_board(board)
 
-        # Human move
+      
         try:
             move = int(input("Enter your move (1-9): ")) - 1
 
@@ -119,35 +115,35 @@ def play_game():
             print("Please enter a number from 1 to 9.")
             continue
 
-        # Check human win
+      
         if check_winner(board, "X"):
             print_board(board)
             print("You win!")
             break
 
-        # Check draw
+        
         if is_draw(board):
             print_board(board)
             print("It's a draw!")
             break
 
-        # Computer move
+        
         print("Computer is thinking...")
         move = computer_move(board)
         board[move] = "O"
 
-        # Check computer win
+  
         if check_winner(board, "O"):
             print_board(board)
             print("Computer wins!")
             break
 
-        # Check draw
+       
         if is_draw(board):
             print_board(board)
             print("It's a draw!")
             break
 
 
-# Start the game
+
 play_game()
